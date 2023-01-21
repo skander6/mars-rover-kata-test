@@ -11,7 +11,7 @@ import org.junit.jupiter.api.TestInstance;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -25,19 +25,16 @@ class GameBoardBLTest {
     private Direction direction = Direction.NORTH;
 
     @BeforeAll
-    public void beforeCoordinatesTest() {
+    public void initialize() {
         x = new Point(1, 60);
         y = new Point(2, 60);
         obstacles = Arrays.asList(new Obstacle(5, 5), new Obstacle(10, 10));
         gameBoard = new GameBoard(x, y, direction, obstacles);
     }
 
-    @Test
-    void move() {
-    }
 
     @Test
-    void moveForward() {
+    void moveForwardShouldIncreaseYWhenDirectionIsNorth() {
         Point expected = new Point(y.getValue() + 1, y.getValue());
         gameBoard.setDirection(Direction.NORTH);
         gameBoardBL.moveForward();
@@ -45,6 +42,61 @@ class GameBoardBLTest {
     }
 
     @Test
-    void moveBackward() {
+    public void moveForwardShouldIncreaseXWhenDirectionIsEast() {
+        Point expected = new Point(x.getValue() + 1, x.getMaxValue());
+        gameBoard.setDirection(Direction.EAST);
+        gameBoardBL.moveForward();
+        assertEquals(gameBoard.getX(),expected);
     }
+
+    @Test
+    public void moveForwardShouldDecreaseYWhenDirectionIsSouth() {
+        Point expected = new Point(y.getValue() - 1, y.getMaxValue());
+        gameBoard.setDirection(Direction.SOUTH);
+        gameBoardBL.moveForward();
+        assertEquals(gameBoard.getY(),expected);
+    }
+
+    @Test
+    public void moveForwardShouldDecreaseXWhenDirectionIsWest() {
+        Point expected = new Point(x.getValue() - 1, x.getMaxValue());
+        gameBoard.setDirection(Direction.WEST);
+        gameBoardBL.moveForward();
+        assertEquals(gameBoard.getX(),expected);
+    }
+
+
+
+    @Test
+    public void moveBackwardShouldDecreaseYWhenDirectionIsNorth() {
+        Point expected = new Point(y.getValue() - 1, y.getMaxValue());
+        gameBoard.setDirection(Direction.NORTH);
+        gameBoardBL.moveBackward();
+        assertEquals(gameBoard.getY(),expected);
+    }
+
+    @Test
+    public void moveBackwardShouldDecreaseXWhenDirectionIsEast() {
+        Point expected = new Point(x.getValue() - 1, x.getMaxValue());
+        gameBoard.setDirection(Direction.EAST);
+        gameBoardBL.moveBackward();
+        assertEquals(gameBoard.getX(),expected);
+    }
+
+    @Test
+    public void moveBackwardShouldIncreaseYWhenDirectionIsSouth() {
+        Point expected = new Point(y.getValue() + 1, y.getMaxValue());
+        gameBoard.setDirection(Direction.SOUTH);
+        gameBoardBL.moveBackward();
+        assertEquals(gameBoard.getY(),expected);
+    }
+
+    @Test
+    public void moveBackwardShouldIncreaseXWhenDirectionIsWest() {
+        Point expected = new Point(x.getValue() + 1, x.getMaxValue());
+        gameBoard.setDirection(Direction.WEST);
+        gameBoardBL.moveBackward();
+        assertEquals(gameBoard.getX(),expected);
+    }
+
 }
