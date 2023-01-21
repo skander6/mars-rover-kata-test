@@ -36,4 +36,7 @@ public class GameBoard {
         return obstacles;
     }
 
+    public void setEncounteredObstacle(boolean encounteredObstacle) {
+        this.encounteredObstacle = encounteredObstacle;
+    }
 }
