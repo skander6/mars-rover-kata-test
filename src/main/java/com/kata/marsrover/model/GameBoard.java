@@ -10,12 +10,11 @@ public class GameBoard {
     private List<Obstacle> obstacles;
     private boolean encounteredObstacle = false;
 
-    public GameBoard(Point x, Point y, Direction direction, List<Obstacle> obstacles, boolean encounteredObstacle) {
+    public GameBoard(Point x, Point y, Direction direction, List<Obstacle> obstacles) {
         this.x = x;
         this.y = y;
         this.direction = direction;
         this.obstacles = obstacles;
-        this.encounteredObstacle = encounteredObstacle;
     }
 
     public void setX(Point value) { x = value; }

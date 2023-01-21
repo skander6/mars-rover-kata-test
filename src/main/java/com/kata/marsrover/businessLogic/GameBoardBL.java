@@ -18,6 +18,9 @@ public class GameBoardBL {
         return false;
     }
 
+    private void changeDirection(Direction direction, int action) {
+
+    }
 
     public void changeDirectionLeft() {
 
